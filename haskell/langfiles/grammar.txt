@@ -1,0 +1,27 @@
+-- START
+S      smts 
+
+-- DECLARATIONS AND STATEMENTS
+
+smts   smt ; smts
+smts   
+smt    BEGIN smts END
+smt    VAR: types = lamx ;
+smt    lamx
+types  type -> types 
+types  type
+type   i32 | u32 | float | int | char | list type
+
+-- LAMBDA EXPRESSIONS 
+
+lamx   LAM var .. lamx
+lamx   expr
+lamx   ( lamx lamx )
+expr   expr + term 
+expr   expr - term
+expr   term
+term   term * factor 
+term   term / factor 
+term   factor
+factor VAR
+factor ( expr )

@@ -1,0 +1,7 @@
+i32
+u32
+float
+int
+char
+list
+vector

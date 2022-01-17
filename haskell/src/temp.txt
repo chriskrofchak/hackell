@@ -1,0 +1,38 @@
+
+Stmt : let ident Types0 '=' Lamx ';'         { Stmt (Var $2) [] $3 $5 } -- args empty for now
+     | '(' Lamx ')' Terms                    { Eval $2 $4 }
+
+Terms :: { [Term] }
+Terms : Terms Term                    { $2:$1 }
+      | Term                          { [$1] }
+
+Lamx : lam ident '..' Lamx            { SLamexpr $2 $4 }
+     | Term                           { Expr $1 }
+
+Types0 : ':' Types                   { $2 }
+       | {- EMPTY -}                 { [] }
+
+Types : Types '->' Type            { (Type $3):$1 }
+     | Type                        { $1 }
+
+Type : int                         { Type IntType }
+     | char                        { Type CharType } 
+     | str                         { Type StrType }
+     | list Type                   { Type ListType $2 }
+
+Term : Term '+' Term               { Op Add $1 $3 }
+     | Term '-' Term               { Op Sub $1 $3 }
+     | Term '*' Term               { Op Mul $1 $3 }
+     | Term '/' Term               { Op Div $1 $3 }
+     | Factor                      { Factor $1 }
+
+Factor : '(' Term ')'              { Brack $2 }
+     | Id                          { Lit $1 }
+
+Id  : ident                        { Lit (Var $1) }
+    | intlit                       { Lit (LInt $1) }
+    | floatlit                     { Lit (LFloat $1) }
+    | charlit                      { Lit (LChar $1) }
+    | strlit                       { Lit (LStr $1) }
+    | true                         { Lit (LBool True) }
+    | false                        { Lit (LBool False) }

@@ -1,0 +1,13 @@
+enum
+import
+begin
+end
+if
+then
+else
+and
+or
+lam
+cons 
+fst
+rst

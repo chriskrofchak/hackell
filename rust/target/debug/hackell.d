@@ -1,0 +1,1 @@
+/Users/chrs/Documents/LEISURE/hackell/target/debug/hackell: /Users/chrs/Documents/LEISURE/hackell/src/hack_scan.rs /Users/chrs/Documents/LEISURE/hackell/src/main.rs /Users/chrs/Documents/LEISURE/hackell/src/make_hack_logos.rs
